@@ -77,7 +77,7 @@ options:
   # If the player inventory is full, the restricted items will be stored in the backpack instead.
   storeInventoryIsFull: true
 # The restrictions represent the different restrictions of the current backpack inventory.
-# You can passlist or blocklist Items for the target backpack.
+# You can pass-or-blocklist Items for the target backpack.
 #
 # Blacklist - All Materials in this list can't be stored in the target Backpack.
 # Whitelist - Only the Materials in this list can be stored in the target Backpack.

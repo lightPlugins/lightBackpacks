@@ -139,7 +139,7 @@
                                     <shadedPattern>de.lightplugins.backpack.util.inventory.inventoryframework</shadedPattern>
                                 </relocation>
                             </relocations>
-                            <outputFile>C:/Users/phili/Desktop/minecraft-server/plugins/${project.artifactId}-${project.version}-SNAPSHOT.jar</outputFile>
+                            <outputFile>C:/Users/philipp/Desktop/minecraft-server/plugins/${project.artifactId}-${project.version}-SNAPSHOT.jar</outputFile>
                             <filters>
                                 <filter>
                                     <artifact>*:*</artifact>
