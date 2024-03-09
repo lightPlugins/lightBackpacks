@@ -1,0 +1,108 @@
+# ########################################################################################  #
+#
+# This is the example backpack. You can use this file as a template for your own backpacks.
+# This backpack will NOT load and is only here for example purposes.
+# The file name is the ID of the backpack.
+# You can also create multiple folders within 'backpacks' to group your backpacks.
+#
+# IMPORTANT: If you DELETE one file, the target backpack of the player will
+#            be deleted including all stored Items after server restart.
+#
+# You can use legacy or hex colors in every line for visual text.
+# If you have any problems, join my discord server (https://discord.gg/t9vS3hgWf8)
+#
+# ########################################################################################  #
+
+# The display name represents the visual name of the backpack in the backpack overview menu.
+displayName: 'Mining Resource Backpack'
+# The Material represents the material of the backpack in the backpack overview menu.
+material: CHEST
+# The model represents the custom model data of the material shown in the backpack overview menu.
+model-data: 1234
+# The lore represents the description of the backpack in the backpack overview menu.
+# You can use legacy markdown or hex colors.
+lore:
+  - '&7This Backpack can only store mining resources'
+  - '&%7Current level: #level#'
+# The gui title represents the title of the current backpack inventory.
+guiTitle: 'Coal Backpack level #level#'
+# The start Pages represent the amount of pages of the current backpack inventory.
+startPages: 1
+# The required Permission represents the permission needed to use this backpack overall.
+requirePermission: 'lightbackpacks.backpack.type.mining-resource'
+# The upgrades represent the different upgrades of the current backpack inventory.
+upgrades:
+  # This config ID represents the ID of the upgrade in the backpack overview menu.
+  # It MUST start with '1' because the default level of all backpacks is '0'.
+  # In this case, '1' is standing for Backpack level 2 and so on.
+  # Only use numbers between 1 and 999. However, you can create unlimited levels.
+  '1':
+    # The pages represent the new amount of pages for the current backpack inventory.
+    # Each backpack upgrade must either have the same number of pages as before or larger.
+    # The number of pages must not be reduced, otherwise items that have already been saved will be lost.
+    pages: 2
+    # The conditions represent the requirement conditions to use this upgrade.
+    # These are the follow conditions from third party plugins and Vanilla
+    #
+    # permission (needs a permission plugin like LuckPerms https://luckperms.net/download)
+    #   - 'perm;lightbackpacks.backpack.type.mining-resource.level.1'
+    #
+    # MMOCORE (needs the mmocore plugin https://www.spigotmc.org/resources/mmocore.70575/)
+    #   profession level:
+    #   - 'mmocore;profession;mining;1'
+    #   class level:
+    #   - 'mmocore;class;human;1'
+    #
+    # Money: (needs Vault, and any EconomyPlugin like https://www.spigotmc.org/resources/%E2%9A%A1-lighteconomy%E2%84%A2-bungee-waterfall-support-animated-titles-the-must-have-economy-solution.83862/)
+    #   - 'vault;10000'
+    conditions:
+      - 'perm;lightbackpacks.backpack.type.mining-resource.level.1'
+      - 'mmocore;profession;mining;1'
+      - 'vault;10000'
+  '2':
+    pages: 3
+    conditions:
+      - 'perm;lightbackpacks.backpack.type.mining-resource.level.1'
+      - 'mmocore;profession;mining;2'
+      - 'vault;40000'
+  '3':
+    pages: 4
+    conditions:
+      - 'perm;lightbackpacks.backpack.type.mining-resource.level.1'
+      - 'mmocore;profession;mining;2'
+      - 'vault;40000'
+# The options represent the different default options of the current backpack inventory.
+# You can change these settings throw the settings menu of the backpack overview menu.
+options:
+  # If the player inventory is full, the restricted items will be stored in the backpack instead.
+  storeInventoryIsFull: true
+# The restrictions represent the different restrictions of the current backpack inventory.
+# You can passlist or blocklist Items for the target backpack.
+#
+# Blacklist - All Materials in this list can't be stored in the target Backpack.
+# Whitelist - Only the Materials in this list can be stored in the target Backpack.
+#
+# To work correctly, only one list should have items in it by deciding priority.
+restrictions:
+  blacklist: []
+  whitelist:
+    # OVERWORLD Resources
+    # These are the follow types from third party plugins and Vanilla.
+    #
+    # Format: 'type;namespace'
+    #
+    # vanilla - All Vanilla Materials.
+    # mmoitems - Items provided by MMOItems (https://www.spigotmc.org/resources/mmoitems.39267/)
+    #
+    - vanilla;COAL
+    - vanilla;RAW_COPPER
+    - vanilla;RAW_IRON
+    - vanilla;RAW_GOLD
+    - vanilla;LAPIS_LAZULI
+    - vanilla;REDSTONE
+    - vanilla;DIAMOND
+    - vanilla;EMERALD
+    - mmoitems;raw_mythril
+    # NETHER Resources
+    - vanilla;QUARTZ
+    - vanilla;GOLD_NUGGET

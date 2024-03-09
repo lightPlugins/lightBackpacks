@@ -1,0 +1,12 @@
+name: lightBackpack
+author: lightPlugins
+version: 0.0.1
+main: de.lightplugins.backpack.master.Backpack
+api-version: 1.18
+depend: [Vault]
+softdepend: [PlaceholderAPI]
+loadbefore: []
+commands:
+  backpack:
+    description: The root command
+    aliases: [bp, bpack]
