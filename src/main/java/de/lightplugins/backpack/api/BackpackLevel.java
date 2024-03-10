@@ -3,7 +3,6 @@ package de.lightplugins.backpack.api;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +12,7 @@ public class BackpackLevel {
     private FileConfiguration targetBackpackFile;
     private Set<String> levelSet;
     private List<BackpackEachLevel> levelList = new ArrayList<>();
+    private int currentLevel = 1;
 
     public BackpackLevel(FileConfiguration targetBackpackFile, Set<String> levelSection) {
         this.levelSet = levelSection;
@@ -42,6 +42,14 @@ public class BackpackLevel {
 
     public void setLevelList(List<BackpackEachLevel> levelList) {
         this.levelList = levelList;
+    }
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
     }
 
     private void createLevels() {

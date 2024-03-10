@@ -1,6 +1,7 @@
 package de.lightplugins.backpack.api;
 
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 
 import java.util.List;
 import java.util.UUID;
@@ -8,6 +9,7 @@ import java.util.UUID;
 public class BackpackConstructor {
 
     private String backpackID;
+    private UUID owner = null;
     private String displayname;
     private Material material;
     private int modelData;
@@ -119,5 +121,13 @@ public class BackpackConstructor {
 
     public void setBackpackRestriction(BackpackRestriction backpackRestriction) {
         this.backpackRestriction = backpackRestriction;
+    }
+
+    public UUID getOwner() {
+        return owner;
+    }
+
+    public void setOwner(UUID owner) {
+        this.owner = owner;
     }
 }
