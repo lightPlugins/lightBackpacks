@@ -1,16 +1,13 @@
 package de.lightplugins.backpack.api;
 
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 import java.util.UUID;
 
 public class BackpackConstructor {
 
-    private String contentsSerialized;
     private String backpackID;
-    private UUID backpackOwner;
     private String displayname;
     private Material material;
     private int modelData;
@@ -21,9 +18,7 @@ public class BackpackConstructor {
     private BackpackLevel backpackLevel;
     private BackpackRestriction backpackRestriction;
 
-    public BackpackConstructor(String contentsSerialized,
-                               String backpackID,
-                               UUID backpackOwner,
+    public BackpackConstructor(String backpackID,
                                String displayname,
                                Material material,
                                int modelData,
@@ -34,9 +29,7 @@ public class BackpackConstructor {
                                BackpackLevel backpackLevel,
                                BackpackRestriction backpackRestriction) {
 
-        this.contentsSerialized = contentsSerialized;
         this.backpackID = backpackID;
-        this.backpackOwner = backpackOwner;
         this.displayname = displayname;
         this.material = material;
         this.modelData = modelData;
@@ -48,28 +41,12 @@ public class BackpackConstructor {
         this.backpackRestriction = backpackRestriction;
     }
 
-    public String getContentsSerialized() {
-        return contentsSerialized;
-    }
-
-    public void setContentsSerialized(String contentsSerialized) {
-        this.contentsSerialized = contentsSerialized;
-    }
-
     public String getBackpackID() {
         return backpackID;
     }
 
     public void setBackpackID(String backpackID) {
         this.backpackID = backpackID;
-    }
-
-    public UUID getBackpackOwner() {
-        return backpackOwner;
-    }
-
-    public void setBackpackOwner(UUID backpackOwner) {
-        this.backpackOwner = backpackOwner;
     }
 
     public String getDisplayname() {

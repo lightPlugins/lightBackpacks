@@ -1,53 +1,47 @@
 package de.lightplugins.backpack.util;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 
 public class MultiFileManager {
-    private String directoryPath;
-    private List<File> yamlFiles;
 
-    public MultiFileManager(String directoryPath) throws IOException {
+    private final String directoryPath;
+    private final List<File> fileList;
+
+    public MultiFileManager(String directoryPath) {
         this.directoryPath = directoryPath;
-        loadYmlFiles();
+        this.fileList = new ArrayList<>();
+        loadFiles();
     }
 
-    private void loadYmlFiles() throws IOException {
-        yamlFiles = new ArrayList<>();
-        Path directory = Paths.get(directoryPath);
-        if (!Files.exists(directory)) {
-            Files.createDirectories(directory);
+    public void reloadFiles() {
+        fileList.clear();
+        loadFiles();
+    }
+
+    private void loadFiles() {
+        File directory = new File(directoryPath);
+        if (directory.exists() && directory.isDirectory()) {
+            findFilesRecursive(directory, fileList);
         }
-        Files.walkFileTree(directory, EnumSet.noneOf(FileVisitOption.class), Integer.MAX_VALUE, new SimpleFileVisitor<>() {
-            @Override
-            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                if (file.toString().endsWith(".yml")) {
-                    yamlFiles.add(file.toFile());
+    }
+
+    private void findFilesRecursive(File directory, List<File> fileList) {
+        File[] files = directory.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    findFilesRecursive(file, fileList);
+                } else {
+                    if(file.getName().equalsIgnoreCase("_example.yml")) continue;
+                    fileList.add(file);
                 }
-                return FileVisitResult.CONTINUE;
             }
-        });
-    }
-
-    public List<File> getYamlFiles() {
-        return yamlFiles;
-    }
-
-    public void reload() throws IOException {
-        loadYmlFiles();
-    }
-
-    public String getFileNameWithoutExtension(File file) {
-        String fileName = file.getName();
-        int pos = fileName.lastIndexOf(".");
-        if (pos > 0) {
-            fileName = fileName.substring(0, pos);
         }
-        return fileName;
+    }
+
+    public List<File> getFiles() {
+        return fileList;
     }
 }

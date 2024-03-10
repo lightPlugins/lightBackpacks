@@ -30,8 +30,8 @@ guiTitle: 'Coal Backpack level #level#'
 startPages: 1
 # The required Permission represents the permission needed to use this backpack overall.
 requirePermission: 'lightbackpacks.backpack.type.mining-resource'
-# The upgrades represent the different upgrades of the current backpack inventory.
-upgrades:
+# The levels represent the different upgrades of the current backpack inventory.
+levels:
   # This config ID represents the ID of the upgrade in the backpack overview menu.
   # It MUST start with '1' because the default level of all backpacks is '0'.
   # In this case, '1' is standing for Backpack level 2 and so on.
