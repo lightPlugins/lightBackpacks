@@ -1,8 +1,6 @@
 package de.lightplugins.backpack.api;
 
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
-
 import java.util.List;
 import java.util.UUID;
 

@@ -12,7 +12,7 @@ public class BackpackLevel {
     private FileConfiguration targetBackpackFile;
     private Set<String> levelSet;
     private List<BackpackEachLevel> levelList = new ArrayList<>();
-    private int currentLevel = 1;
+    private int currentLevel = 0;
 
     public BackpackLevel(FileConfiguration targetBackpackFile, Set<String> levelSection) {
         this.levelSet = levelSection;
