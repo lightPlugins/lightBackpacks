@@ -1,8 +1,12 @@
 package de.lightplugins.backpack.api;
 
+import de.lightplugins.backpack.master.Backpack;
 import de.lightplugins.backpack.util.ConvertBase;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,15 +54,6 @@ public class BackbackAPI {
         return sortedBackpacks;
     }
 
-    public int getCurrentBackpackLevel(BackpackConstructor backpackConstructor) {
-        for(BackpackConstructor b : backpackData) {
-            if(b.equals(backpackConstructor)) {
-                return b.getBackpackLevel();
-            }
-        }
-        return 0;
-    }
-
     public String getBackpackID(BackpackConstructor backpackConstructor) {
         for(BackpackConstructor b : backpackData) {
             if(b.equals(backpackConstructor)) {
@@ -68,13 +63,20 @@ public class BackbackAPI {
         return null;
     }
 
-    public ItemStack[] getBackpackContent(UUID owner, String backpackID) throws IOException {
-        for(BackpackConstructor b : backpackData) {
-            if(b.getBackpackOwner().equals(owner) && b.getBackpackID().equals(backpackID)) {
-                return deserializeArrayStack(b.getContents());
-            }
-        }
+    private void initBackpacksFromFile() {
 
-        return null;
+        for (File f : Backpack.backpackFiles) {
+
+            FileConfiguration conf = YamlConfiguration.loadConfiguration(f);
+
+
+
+
+
+
+
+
+        }
     }
+
 }

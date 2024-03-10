@@ -2,6 +2,8 @@ package de.lightplugins.backpack.api;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.List;
 import java.util.UUID;
 
 public class BackpackConstructor {
@@ -9,28 +11,48 @@ public class BackpackConstructor {
     private String contentsSerialized;
     private String backpackID;
     private UUID backpackOwner;
-    private UUID[] trustedUsers;
-    private int backpackLevel;
-    private ItemStack[] restrictions;
+    private String displayname;
+    private Material material;
+    private int modelData;
+    private List<String> lore;
+    private String guiTitle;
+    private int startPages;
+    private String requirePermission;
+    private BackpackLevel backpackLevel;
+    private BackpackRestriction backpackRestriction;
 
     public BackpackConstructor(String contentsSerialized,
                                String backpackID,
                                UUID backpackOwner,
-                               UUID[] trustedUsers,
-                               int backpackLevel) {
+                               String displayname,
+                               Material material,
+                               int modelData,
+                               List<String> lore,
+                               String guiTitle,
+                               int startPages,
+                               String requirePermission,
+                               BackpackLevel backpackLevel,
+                               BackpackRestriction backpackRestriction) {
 
         this.contentsSerialized = contentsSerialized;
         this.backpackID = backpackID;
         this.backpackOwner = backpackOwner;
-        this.trustedUsers = trustedUsers;
+        this.displayname = displayname;
+        this.material = material;
+        this.modelData = modelData;
+        this.lore = lore;
+        this.guiTitle = guiTitle;
+        this.startPages = startPages;
+        this.requirePermission = requirePermission;
         this.backpackLevel = backpackLevel;
+        this.backpackRestriction = backpackRestriction;
     }
 
-    public String getContents() {
+    public String getContentsSerialized() {
         return contentsSerialized;
     }
 
-    public void setContents(String contentsSerialized) {
+    public void setContentsSerialized(String contentsSerialized) {
         this.contentsSerialized = contentsSerialized;
     }
 
@@ -50,18 +72,75 @@ public class BackpackConstructor {
         this.backpackOwner = backpackOwner;
     }
 
-    public UUID[] getTrustedUsers() {
-        return trustedUsers;
+    public String getDisplayname() {
+        return displayname;
     }
 
-    public void setTrustedUsers(UUID[] trustedUsers) {
-        this.trustedUsers = trustedUsers;
+    public void setDisplayname(String displayname) {
+        this.displayname = displayname;
     }
 
-    public int getBackpackLevel() {
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public int getModelData() {
+        return modelData;
+    }
+
+    public void setModelData(int modelData) {
+        this.modelData = modelData;
+    }
+
+    public List<String> getLore() {
+        return lore;
+    }
+
+    public void setLore(List<String> lore) {
+        this.lore = lore;
+    }
+
+    public String getGuiTitle() {
+        return guiTitle;
+    }
+
+    public void setGuiTitle(String guiTitle) {
+        this.guiTitle = guiTitle;
+    }
+
+    public int getStartPages() {
+        return startPages;
+    }
+
+    public void setStartPages(int startPages) {
+        this.startPages = startPages;
+    }
+
+    public String getRequirePermission() {
+        return requirePermission;
+    }
+
+    public void setRequirePermission(String requirePermission) {
+        this.requirePermission = requirePermission;
+    }
+
+    public BackpackLevel getBackpackLevel() {
         return backpackLevel;
     }
-    public void setBackpackLevel(int backpackLevel) {
+
+    public void setBackpackLevel(BackpackLevel backpackLevel) {
         this.backpackLevel = backpackLevel;
+    }
+
+    public BackpackRestriction getBackpackRestriction() {
+        return backpackRestriction;
+    }
+
+    public void setBackpackRestriction(BackpackRestriction backpackRestriction) {
+        this.backpackRestriction = backpackRestriction;
     }
 }
