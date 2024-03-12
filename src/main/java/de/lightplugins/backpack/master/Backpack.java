@@ -1,15 +1,25 @@
 package de.lightplugins.backpack.master;
 
 import de.lightplugins.backpack.api.BackpackAPI;
+import de.lightplugins.backpack.api.BackpackPlayer;
+import de.lightplugins.backpack.commands.BackpackCommandManager;
+import de.lightplugins.backpack.events.PlayerJoinEvent;
 import de.lightplugins.backpack.util.DebugMessages;
 import de.lightplugins.backpack.util.FileManager;
 import de.lightplugins.backpack.util.MultiFileManager;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Backpack extends JavaPlugin {
 
@@ -21,7 +31,7 @@ public class Backpack extends JavaPlugin {
 
     public MultiFileManager multiFileManager;
     public static List<File> backpackFiles;
-
+    public static ConcurrentHashMap<UUID, BackpackPlayer> backpackPlayerMap = new ConcurrentHashMap<>();
 
     public void onLoad() {
         DebugMessages.sendInfo("Preloader started ...");
@@ -46,6 +56,9 @@ public class Backpack extends JavaPlugin {
     }
 
     public void onEnable() {
+
+        PluginManager pm = Bukkit.getPluginManager();
+        pm.registerEvents(new PlayerJoinEvent(), this);
 
     }
 

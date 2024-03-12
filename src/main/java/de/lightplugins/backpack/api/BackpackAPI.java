@@ -6,13 +6,14 @@ import de.lightplugins.backpack.util.DebugMessages;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class BackpackAPI {
 
@@ -55,6 +56,37 @@ public class BackpackAPI {
             }
         }
         return null;
+    }
+
+    public void prepareBackpacksForPlayer(Player player) {
+
+        for(BackpackConstructor b : backpackData) {
+
+            BackpackPlayer bp = new BackpackPlayer(
+                    0,  // 0 default
+                    player.getUniqueId(), // owner UUID
+                    null,   // contents null by default
+                    b   // backpack-constructor
+            );
+
+            if(Backpack.backpackPlayerMap.size() == 0) {
+                DebugMessages.sendInfo("Add backpack " + b.getBackpackID() + " to player map");
+                Backpack.backpackPlayerMap.put(player.getUniqueId(), bp);
+                continue;
+            }
+
+            CompletableFuture.runAsync(() -> {
+                Backpack.backpackPlayerMap.compute(player.getUniqueId(), (key, existingValue) -> {
+                    if (existingValue != null && existingValue.getBackpackConstructor().getBackpackID().equals(b.getBackpackID())) {
+                        DebugMessages.sendInfo("Player " + player.getName() + " already has backpack " + b.getBackpackID());
+                        return existingValue;
+                    } else {
+                        DebugMessages.sendInfo("Add backpack " + b.getBackpackID() + " to player map from player " + player.getName());
+                        return bp;
+                    }
+                });
+            });
+        }
     }
 
     private void initBackpacksFromFile() {
